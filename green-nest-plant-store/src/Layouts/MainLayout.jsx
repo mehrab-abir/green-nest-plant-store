@@ -1,11 +1,16 @@
-import React from 'react';
+import React from "react";
+import Header from "../Components/Header";
+import { Outlet } from "react-router";
 
 const MainLayout = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return (
+    <div>
+      <Header></Header>
+      <div className="pt-25">
+        <Outlet></Outlet>
+      </div>
+    </div>
+  );
 };
 
 export default MainLayout;

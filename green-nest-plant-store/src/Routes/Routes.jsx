@@ -1,11 +1,51 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layouts/MainLayout";
+import Auth from "../Layouts/AuthLayout.jsx/Auth";
+import Signin from "../Layouts/AuthLayout.jsx/Signin";
+import Signup from "../Layouts/AuthLayout.jsx/Signup";
+import Home from "../Pages/Home";
+import Plants from "../Pages/Plants";
+import Profile from "../Pages/Profile";
 
 const router = createBrowserRouter([
     {
         path : '/',
-        Component : MainLayout
+        Component : MainLayout,
+        children : [
+            {
+                index : true,
+                Component : Home,
+                loader : ()=>fetch('/plants.json'),
+                hydrateFallbackElement : <p>Loading...</p>
+            },
+            {
+                path : '/plants',
+                Component: Plants
+            }
+        ]
     },
+    {
+        path : '/auth',
+        Component : Auth,
+        children : [
+            {
+                index : true,
+                Component : Signin
+            },
+            {
+                path : 'signin',
+                Component : Signin
+            },
+            {
+                path : 'signup',
+                Component : Signup
+            }
+        ]
+    },
+    {
+        path : 'profile',
+        Component : Profile
+    }
 ])
 
 export default router;
