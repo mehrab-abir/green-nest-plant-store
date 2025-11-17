@@ -8,17 +8,17 @@ const Header = () => {
     return (
       <div className="bg-white py-6 shadow-sm fixed w-full z-50">
         <div className="w-11/12 mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <Link to='/' className="flex items-center gap-2">
             <img src={logo} alt="" className="hidden md:block w-[50px]" />
-            <h1 className="text-xl md:text-2xl font-bold text-green-600">
+            <h1 className="text-xl md:text-3xl font-bold text-green-600">
               GreenNest
             </h1>
-          </div>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-8 text-lg">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/plants">Plants</NavLink>
-            <NavLink to="/profile">My Profile</NavLink>
+            <NavLink to="/" className="hover:text-green-600">Home</NavLink>
+            <NavLink to="/plants" className="hover:text-green-600">Plants</NavLink>
+            <NavLink to="/profile" className="hover:text-green-600">My Profile</NavLink>
           </nav>
 
           <div className="space-x-2 flex">
