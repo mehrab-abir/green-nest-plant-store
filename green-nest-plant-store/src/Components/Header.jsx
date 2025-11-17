@@ -17,8 +17,8 @@ const Header = () => {
                     <NavLink to='/profile'>My Profile</NavLink>
                 </nav>
 
-                <div>
-                    <Link to='/auth/signin' className='btn bg-green-600 text-white'>Sign In</Link>
+                <div className='space-x-2'>
+                    <Link to='/auth/signin' className='btn text-green-500 border border-green-500 bg-white'>Sign In</Link>
                     <Link to='/auth/signup' className='btn bg-green-600 text-white'>Sign Up</Link>
                 </div>
             </div>

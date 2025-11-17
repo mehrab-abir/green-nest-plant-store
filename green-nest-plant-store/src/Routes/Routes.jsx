@@ -6,6 +6,7 @@ import Signup from "../Layouts/AuthLayout.jsx/Signup";
 import Home from "../Pages/Home";
 import Plants from "../Pages/Plants";
 import Profile from "../Pages/Profile";
+import PlantDetails from "../Components/PlantDetails";
 
 const router = createBrowserRouter([
     {
@@ -20,9 +21,15 @@ const router = createBrowserRouter([
             },
             {
                 path : '/plants',
-                Component: Plants
+                Component: Plants,
+                loader : ()=>fetch('/plants.json'),
+                hydrateFallbackElement : <p>Loading...</p>
             }
         ]
+    },
+    {
+        path : '/plantdetails/:id',
+        Component : PlantDetails
     },
     {
         path : '/auth',
