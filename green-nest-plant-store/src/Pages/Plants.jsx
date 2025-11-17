@@ -6,6 +6,7 @@ const Plants = () => {
     const plants = useLoaderData();
     return (
       <div className="mt-15">
+        <title>All Plants</title>
         <div className="w-11/12 mx-auto">
           <div className="text-center mb-10">
             <h1 className="font-bold text-3xl">All Plants</h1>

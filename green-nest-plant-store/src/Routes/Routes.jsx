@@ -9,50 +9,52 @@ import Profile from "../Pages/Profile";
 import PlantDetails from "../Components/PlantDetails";
 
 const router = createBrowserRouter([
-    {
-        path : '/',
-        Component : MainLayout,
-        children : [
-            {
-                index : true,
-                Component : Home,
-                loader : ()=>fetch('/plants.json'),
-                hydrateFallbackElement : <p>Loading...</p>
-            },
-            {
-                path : '/plants',
-                Component: Plants,
-                loader : ()=>fetch('/plants.json'),
-                hydrateFallbackElement : <p>Loading...</p>
-            }
-        ]
-    },
-    {
-        path : '/plantdetails/:id',
-        Component : PlantDetails
-    },
-    {
-        path : '/auth',
-        Component : Auth,
-        children : [
-            {
-                index : true,
-                Component : Signin
-            },
-            {
-                path : 'signin',
-                Component : Signin
-            },
-            {
-                path : 'signup',
-                Component : Signup
-            }
-        ]
-    },
-    {
-        path : 'profile',
-        Component : Profile
-    }
-])
+  {
+    path: "/",
+    Component: MainLayout,
+    children: [
+      {
+        index: true,
+        Component: Home,
+        loader: () => fetch("/plants.json"),
+        hydrateFallbackElement: <p>Loading...</p>,
+      },
+      {
+        path: "/plants",
+        Component: Plants,
+        loader: () => fetch("/plants.json"),
+        hydrateFallbackElement: <p>Loading...</p>,
+      },
+    ],
+  },
+  {
+    path: "/plantdetails/:id",
+    Component: PlantDetails,
+    loader: () => fetch("/plants.json"),
+    hydrateFallbackElement: <p>Loading...</p>,
+  },
+  {
+    path: "/auth",
+    Component: Auth,
+    children: [
+      {
+        index: true,
+        Component: Signin,
+      },
+      {
+        path: "signin",
+        Component: Signin,
+      },
+      {
+        path: "signup",
+        Component: Signup,
+      },
+    ],
+  },
+  {
+    path: "profile",
+    Component: Profile,
+  },
+]);
 
 export default router;

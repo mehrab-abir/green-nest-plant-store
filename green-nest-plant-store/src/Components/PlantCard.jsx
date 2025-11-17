@@ -27,7 +27,7 @@ const PlantCard = ({plant}) => {
             View Details
           </Link>
         </div>
-        <div className='absolute top-3 right-3 bg-white p-1 rounded-xl'>
+        <div className='absolute top-3 right-3 bg-white p-1 rounded-xl' title='care level'>
           <span className='text-green-500'>{careLevel}</span>
         </div>
       </div>
