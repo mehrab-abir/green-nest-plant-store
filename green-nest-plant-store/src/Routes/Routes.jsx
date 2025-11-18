@@ -7,6 +7,8 @@ import Home from "../Pages/Home";
 import Plants from "../Pages/Plants";
 import Profile from "../Pages/Profile";
 import PlantDetails from "../Components/PlantDetails";
+import Loader from "../Components/Loader";
+import PrivateRoute from "../Components/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -17,13 +19,15 @@ const router = createBrowserRouter([
         index: true,
         Component: Home,
         loader: () => fetch("/plants.json"),
-        hydrateFallbackElement: <p>Loading...</p>,
+        hydrateFallbackElement: <Loader></Loader>,
       },
       {
         path: "/plants",
-        Component: Plants,
+        element:<PrivateRoute>
+          <Plants></Plants>
+        </PrivateRoute>,
         loader: () => fetch("/plants.json"),
-        hydrateFallbackElement: <p>Loading...</p>,
+        hydrateFallbackElement: <Loader></Loader>,
       },
     ],
   },
@@ -31,7 +35,7 @@ const router = createBrowserRouter([
     path: "/plantdetails/:id",
     Component: PlantDetails,
     loader: () => fetch("/plants.json"),
-    hydrateFallbackElement: <p>Loading...</p>,
+    hydrateFallbackElement: <Loader></Loader>,
   },
   {
     path: "/auth",

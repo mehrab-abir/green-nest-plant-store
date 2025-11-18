@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { use } from 'react';
 import logo from '../assets/images/logo.png'
-import {Link, NavLink} from 'react-router'
+import userAvatar from '../assets/images/user.png'
+import {Link, NavLink, useNavigate} from 'react-router'
 import { SlArrowLeftCircle } from "react-icons/sl";
 import { closeMenu, openMenu } from '../ResponsiveNav';
+import { AuthContext } from '../Authentication/AuthContext';
+import { IoMdArrowDropdown } from "react-icons/io";
+import { toggleUserDropdown } from '../Utilities';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const Header = () => {
+  const { user, signOutUser} = use(AuthContext);
+  const navigate = useNavigate();
+
+  console.log(user);
+
+  const handleSignOut = ()=>{
+    signOutUser()
+    .then(()=>{
+      toast.info("Signed out", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      navigate('/');
+    })
+    .catch(error=>toast.error(error.message))
+  }
+
     return (
       <div className="bg-white py-6 shadow-sm fixed w-full z-50">
         <div className="w-11/12 mx-auto flex items-center justify-between">
-          <Link to='/' className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <img src={logo} alt="" className="hidden md:block w-[50px]" />
             <h1 className="text-xl md:text-3xl font-bold text-green-600">
               GreenNest
@@ -16,26 +45,77 @@ const Header = () => {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8 text-lg">
-            <NavLink to="/" className="hover:text-green-600">Home</NavLink>
-            <NavLink to="/plants" className="hover:text-green-600">Plants</NavLink>
-            <NavLink to="/profile" className="hover:text-green-600">My Profile</NavLink>
+            <NavLink to="/" className="hover:text-green-600">
+              Home
+            </NavLink>
+            <NavLink to="/plants" className="hover:text-green-600">
+              Plants
+            </NavLink>
+            <NavLink to="/profile" className="hover:text-green-600">
+              My Profile
+            </NavLink>
           </nav>
 
-          <div className="space-x-2 flex">
-            <Link
-              to="/auth/signin"
-              className="btn text-green-500 border border-green-500 bg-white px-2 md:px-4"
-            >
-              Sign In
-            </Link>
-            <Link
-              to="/auth/signup"
-              className="btn bg-green-600 text-white px-2 md:px-4"
-            >
-              Sign Up
-            </Link>
+          <div className="relative">
+            {user ? (
+              user.photoURL ? (
+                <div
+                  onClick={toggleUserDropdown}
+                  className="cursor-pointer flex items-center"
+                >
+                  <img src={user.providerData[0].photoURL} alt="" className="w-10 rounded-full" />
+                  <IoMdArrowDropdown />
+                </div>
+              ) : (
+                <div
+                  onClick={toggleUserDropdown}
+                  className="cursor-pointer flex items-center"
+                >
+                  <img src={userAvatar} alt="" className="w-14" />
+                  <IoMdArrowDropdown />
+                </div>
+              )
+            ) : (
+              <div className="space-x-2 flex">
+                <Link
+                  to="/auth/signin"
+                  className="btn text-green-500 border border-green-500 bg-white px-2 md:px-4"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/auth/signup"
+                  className="btn bg-green-600 text-white px-2 md:px-4"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
 
-            <div onClick={openMenu} className="flex md:hidden flex-col items-end justify-center space-y-1 ml-2 cursor-pointer" id='switch'>
+            {/* user dropdown */}
+            <div
+              className="absolute bg-white min-w-52 py-2 px-5 border right-0 opacity-0"
+              id="userDropdown"
+            >
+              <p className="text-lg font-semibold">
+                {user ? `${user.displayName}` : ""}
+              </p>
+              <button
+                onClick={()=>{
+                  handleSignOut();
+                  toggleUserDropdown();
+                }}
+                className="btn bg-white border-red-500 text-red-500 mt-2 py-0"
+              >
+                Sign Out
+              </button>
+            </div>
+
+            <div
+              onClick={openMenu}
+              className="flex md:hidden flex-col items-end justify-center space-y-1 ml-2 cursor-pointer"
+              id="switch"
+            >
               <span className="w-6 h-1 bg-black rounded-sm"></span>
               <span className="w-4 h-1 bg-black rounded-sm"></span>
               <span className="w-6 h-1 bg-black rounded-sm"></span>
@@ -44,20 +124,48 @@ const Header = () => {
         </div>
 
         {/* navbar in mobile devices */}
-        <div className="fixed top-0 right-0 w-[200px] h-screen bg-green-600 opacity-90 p-2 shadow-2xl translate-x-full transition-all duration-300" id='mobileNav'>
-          <SlArrowLeftCircle onClick={closeMenu} className="absolute left-6 top-3 text-3xl cursor-pointer text-white rotate-180" id='closeBtn' />
+        <div
+          className="fixed top-0 right-0 w-[200px] h-screen bg-green-600 opacity-90 p-2 shadow-2xl translate-x-full transition-all duration-300"
+          id="mobileNav"
+        >
+          <SlArrowLeftCircle
+            onClick={closeMenu}
+            className="absolute left-6 top-3 text-3xl cursor-pointer text-white rotate-180"
+            id="closeBtn"
+          />
           <div className="mt-12 ml-5 flex flex-col space-y-2">
             <NavLink to="/" className="text-lg text-white" onClick={closeMenu}>
               Home
             </NavLink>
-            <NavLink to="/plants" className="text-lg text-white" onClick={closeMenu}>
+            <NavLink
+              to="/plants"
+              className="text-lg text-white"
+              onClick={closeMenu}
+            >
               Plants
             </NavLink>
-            <NavLink to="/profile" className="text-lg text-white" onClick={closeMenu}>
+            <NavLink
+              to="/profile"
+              className="text-lg text-white"
+              onClick={closeMenu}
+            >
               My Profile
             </NavLink>
           </div>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Bounce}
+        />
       </div>
     );
 };

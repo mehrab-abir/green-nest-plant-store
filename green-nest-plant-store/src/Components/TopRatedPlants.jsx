@@ -4,7 +4,6 @@ import PlantCard from "./PlantCard";
 
 const TopRatedPlants = () => {
   const plants = useLoaderData();
-//   console.log(plants);
 
     const topRated = plants.slice(0,6);
   return (
