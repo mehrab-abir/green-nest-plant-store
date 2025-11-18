@@ -18,6 +18,7 @@ const Header = () => {
   const handleSignOut = ()=>{
     signOutUser()
     .then(()=>{
+      navigate("/");
       toast.info("Signed out", {
         position: "top-center",
         autoClose: 5000,
@@ -29,7 +30,6 @@ const Header = () => {
         theme: "light",
         transition: Bounce,
       });
-      navigate('/');
     })
     .catch(error=>toast.error(error.message))
   }
@@ -63,7 +63,7 @@ const Header = () => {
                   onClick={toggleUserDropdown}
                   className="cursor-pointer flex items-center"
                 >
-                  <img src={user.providerData[0].photoURL} alt="" className="w-10 rounded-full" />
+                  <img src={user.photoURL ||user.providerData[0].photoURL} alt="" className="w-10 rounded-full" />
                   <IoMdArrowDropdown />
                 </div>
               ) : (
@@ -94,18 +94,19 @@ const Header = () => {
 
             {/* user dropdown */}
             <div
-              className="absolute bg-white min-w-52 py-2 px-5 border right-0 opacity-0"
+              className="absolute bg-white min-w-52 py-2 px-5 border flex flex-col right-0 opacity-0"
               id="userDropdown"
             >
               <p className="text-lg font-semibold">
                 {user ? `${user.displayName}` : ""}
               </p>
+              <Link to='/profile' className='text-lg my-2 hover:underline'>My Profile</Link>
               <button
                 onClick={()=>{
                   handleSignOut();
                   toggleUserDropdown();
                 }}
-                className="btn bg-white border-red-500 text-red-500 mt-2 py-0"
+                className="btn bg-white border-red-500 text-red-500 mt-2 py-0 hover:bg-red-500 hover:text-white"
               >
                 Sign Out
               </button>
