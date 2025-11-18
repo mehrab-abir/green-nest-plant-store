@@ -6,7 +6,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <div className="py-12 bg-green-900 text-white">
+    <div className="pt-12 pb-6 bg-green-900 text-white">
       <div className="w-11/12 mx-auto">
         <div className="flex flex-col-reverse md:flex-row justify-between mb-8">
           <div className="flex-1 mt-8 md:mt-0">
@@ -38,7 +38,6 @@ const Footer = () => {
 
         <div className="text-center pt-5 border-t border-green-700">
           <p>© 2025 GreenNest. All rights reserved.</p>
-          <p>Contact Developer : <Link to='https://www.linkedin.com/in/mehrababir' target="blank" className="font-bold">Mehrab Abir</Link> </p>
         </div>
       </div>
     </div>

@@ -11,8 +11,6 @@ const Header = () => {
   const { user, signOutUser } = use(AuthContext);
   const navigate = useNavigate();
 
-  console.log(user);
-
   const [openDropdown, setOpenDropDown] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
 
@@ -28,7 +26,7 @@ const Header = () => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "color",
+          theme: "light",
           transition: Bounce,
         });
       })
@@ -172,7 +170,7 @@ const Header = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="color"
+        theme="light"
         transition={Bounce}
       />
     </div>

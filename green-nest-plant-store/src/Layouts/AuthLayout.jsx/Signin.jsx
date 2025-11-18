@@ -33,7 +33,17 @@ const Signin = () => {
         setLoading(false);
         navigate(location.state || "/");
       })
-      .catch((error) => toast.error(error.message));
+      .catch((error) =>{
+        if(error.code === "auth/invalid-credential"){
+          toast.error("Invalid email or password");
+        }
+        else if(error.code === "auth/user-not-found"){
+          toast.error("No user found with this email")
+        }
+        else{
+          toast.error(error.message);
+        }
+      });
   };
 
   //   sign in with google
@@ -50,7 +60,6 @@ const Signin = () => {
   //forgot password
   const passwordReset = () => {
     const email = emailRef.current.value;
-    // console.log(email);
 
     resetPassword(email)
       .then(() => {
@@ -58,7 +67,14 @@ const Signin = () => {
           "Password reset link sent. Please check your email."
         );
       })
-      .catch((error) => toast.error(error.message));
+      .catch((error) =>{
+        if(error.code === "auth/user-not-found"){
+          toast.error("No account exists with this email.");
+        }
+        else{
+          toast.error(error.message);
+        }
+      });
   };
 
   return (

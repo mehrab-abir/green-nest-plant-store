@@ -52,7 +52,12 @@ const Signup = () => {
         });
       })
       .catch((error) => {
-        toast.error(error.message);
+        if (error.code === "auth/email-already-in-use"){
+          toast.error("This email is already in use. Try signing in instead.");
+        }
+        else{
+          toast.error(error.message);
+        }  
       })
       .finally(() => {
         setLoading(false);

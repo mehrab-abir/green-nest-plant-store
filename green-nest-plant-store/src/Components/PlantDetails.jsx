@@ -34,7 +34,7 @@ const PlantDetails = () => {
             <h2 className="text-5xl font-bold my-3">{plantName}</h2>
 
             <h2 className="text-4xl text-green-600 font-bold mt-8">${price}</h2>
-            <h4 className="font-bold text-lg mt-6">Description</h4>
+            <h4 className="font-bold text-lg mt-6 text-gray-500">Description</h4>
             <p className="mb-4">{description}</p>
 
             <div className="flex justify-between mt-8">
@@ -48,7 +48,7 @@ const PlantDetails = () => {
               <p className="flex items-center"> {providerName}</p>
             </div>
 
-            <div className='hidden md:block mt-4 bg-black text-white py-1 px-3 w-fit rounded-lg'>
+            <div className='hidden md:block mt-4 bg-black text-white py-1 px-3 w-fit rounded-lg hover:bg-gray-800 hover:px-4 transition-all duration-300'>
                 <Link to='/plants' >← Back</Link>
             </div>
             

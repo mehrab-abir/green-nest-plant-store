@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { Link } from "react-router";
 
-// Import hero images
 import hero1 from "../assets/images/hero-img/hero-img (1).jpg";
 import hero2 from "../assets/images/hero-img/hero-img (2).jpg";
 import hero3 from "../assets/images/hero-img/hero-img (3).jpg";
