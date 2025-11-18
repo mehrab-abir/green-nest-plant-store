@@ -5,15 +5,15 @@ GreenNest is a modern indoor plants e-commerce web app built with React, React R
 Visit: https://green-nest-indoor-plants.netlify.app/
 
 ## Features
--Interactive UI for browsing plant collections
--Firebase user authentication (Sign up, Sign in, Forgot Password)
--Update Profile
--Fully responsive design (mobile-first approach)
--Green-themed UI to match the store's purpose
+- Interactive UI for browsing plant collections
+- Firebase user authentication (Sign up, Sign in, Forgot Password)
+- Update Profile
+- Fully responsive design (mobile-first approach)
+- Green-themed UI to match the store's purpose
 
 🛠️ Tech Stack
--React + Vite
--React Router
--Tailwind CSS
--DaisyUI
--Firebase Auth
+- React + Vite
+- React Router
+- Tailwind CSS
+- DaisyUI
+- Firebase Auth
