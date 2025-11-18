@@ -39,7 +39,7 @@ const Profile = () => {
       <Header></Header>
       <div className="w-11/12 mx-auto pt-28 flex flex-col items-center justify-center mb-10">
         <h1 className="text-2xl font-semibold text-center mb-2">My Profile</h1>
-        <div className="w-1/2 px-2 py-6 shadow-2xl pb-4">
+        <div className="w-full md:w-1/2 px-2 py-6 shadow-2xl pb-4">
           <div className="flex flex-col items-center justify-center">
             <img
               src={userAvatar}

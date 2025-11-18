@@ -31,15 +31,15 @@ const PlantDetails = () => {
           </div>
           <div className='mt-5 md:mt-0'>
             <p className="text-green-600 text-lg bg-green-100 p-2 w-fit rounded-lg" title='category'>{category}</p>
-            <h2 className="text-5xl font-bold my-3">{plantName}</h2>
+            <h2 className="text-4xl font-bold my-3">{plantName}</h2>
 
-            <h2 className="text-4xl text-green-600 font-bold mt-8">${price}</h2>
+            <h2 className="text-4xl text-green-600 font-bold mt-6">${price}</h2>
             <h4 className="font-bold text-lg mt-6 text-gray-500">Description</h4>
             <p className="mb-4">{description}</p>
 
             <div className="flex justify-between mt-8">
               <p className="text-lg text-red-500 font-bold">In Stock: {availableStock}</p>
-              <p className="text-lg font-bold">Rating: <span className='text-orange-500'>{rating}</span></p>
+              <p className="text-lg font-bold">Rating: <span className='text-green-800'>{rating}</span></p>
             </div>
 
             <div className="mt-4 bg-green-200 flex items-center py-2 rounded-md px-3">

@@ -160,9 +160,9 @@ const Signup = () => {
         </form>
 
         <div className="flex justify-between items-center mt-5 w-full px-10">
-          <span className="w-full bg-gray-300 h-px"></span>
-          <span className="w-full text-center">Or continue with</span>
-          <span className="w-full bg-gray-300 h-px"></span>
+          <span className="w-full bg-gray-300 h-px flex-2"></span>
+          <span className="w-full text-center flex-1">Or</span>
+          <span className="w-full bg-gray-300 h-px flex-2"></span>
         </div>
 
         <div className="w-full px-10">
