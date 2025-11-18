@@ -9,6 +9,7 @@ import Profile from "../Pages/Profile";
 import PlantDetails from "../Components/PlantDetails";
 import Loader from "../Components/Loader";
 import PrivateRoute from "../Components/PrivateRoute";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       <Profile></Profile>
     </PrivateRoute>
   },
+  {
+    path : '*',
+    Component : ErrorPage
+  }
 ]);
 
 export default router;
