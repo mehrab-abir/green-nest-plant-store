@@ -5,7 +5,7 @@ import Footer from "../Components/Footer";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
-import userAvatar from '../assets/images/user.png'
+import defaultAvatar from "../assets/images/user.png";
 
 const Profile = () => {
   const { user, editProfile, setUser, setLoading } = use(AuthContext);
@@ -30,6 +30,9 @@ const Profile = () => {
     .finally(()=>setLoading(false));
   };
 
+  const userAvatar =
+      user?.photoURL || user?.providerData?.[0]?.photoURL || defaultAvatar;
+
   return (
     <div>
       <title>Profile</title>
@@ -39,7 +42,7 @@ const Profile = () => {
         <div className="w-1/2 px-2 py-6 shadow-2xl pb-4">
           <div className="flex flex-col items-center justify-center">
             <img
-              src={user.providerData[0].photoURL || userAvatar}
+              src={userAvatar}
               alt=""
               className="w-28 rounded-full"
             />
