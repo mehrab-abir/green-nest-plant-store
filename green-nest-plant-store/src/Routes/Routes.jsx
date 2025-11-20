@@ -34,7 +34,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/plantdetails/:id",
-    Component: PlantDetails,
+    element: <PrivateRoute>
+      <PlantDetails></PlantDetails>
+    </PrivateRoute>,
     loader: () => fetch("/plants.json"),
     hydrateFallbackElement: <Loader></Loader>,
   },
